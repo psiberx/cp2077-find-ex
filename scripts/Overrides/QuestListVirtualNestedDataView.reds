@@ -7,7 +7,8 @@ protected func FilterText(itemData: ref<VirutalNestedListData>) -> Bool {
     let questData = itemData.m_data as QuestListItemData;
     let questEntry = questData.m_questData;
 
-    if StrContains(UTF8StrUpper(questEntry.GetTitle(questData.m_journalManager)), this.m_searchTerm) {
+    let title = GetLocalizedText(questEntry.GetTitle(questData.m_journalManager));
+    if StrContains(UTF8StrUpper(title), this.m_searchTerm) {
         return true;
     }
 
