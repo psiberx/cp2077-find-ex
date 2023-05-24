@@ -5,7 +5,7 @@ import Codeware.UI.*
 public func Init(gameController: wref<CraftingMainGameController>) {
     wrappedMethod(gameController);
 
-    let panel = this.GetRootCompoundWidget(); //inkWidgetRef.Get(this.m_sortingButton).parentWidget as inkCompoundWidget;
+    let panel = this.GetRootCompoundWidget();
 
     let addon = ListControlAddon.Create();
     addon.SetMargin(0, 110.0);

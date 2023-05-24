@@ -5,10 +5,10 @@ import Codeware.UI.*
 protected cb func OnInitialize() -> Bool {
     wrappedMethod();
 
-    let panel = this.GetChildWidgetByPath(n"ListHeader") as inkHorizontalPanel;
+    let panel = this.GetRootCompoundWidget();
 
     let addon = NestedListControlAddon.Create();
-    addon.SetMargin(238.0, -15.0);
+    addon.SetMargin(830.0, 296.0);
     addon.Reparent(panel, this);
 }
 
