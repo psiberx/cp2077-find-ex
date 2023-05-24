@@ -1,6 +1,3 @@
-@addField(VirtualNestedListDataView)
-public let m_searchTerm: String;
-
 @addMethod(VirtualNestedListDataView)
 public func CanToggleLevels() -> Bool {
     return UTF8StrLen(this.m_searchTerm) == 0;
