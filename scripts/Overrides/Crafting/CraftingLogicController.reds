@@ -8,7 +8,8 @@ public func Init(gameController: wref<CraftingMainGameController>) {
     let panel = this.GetRootCompoundWidget();
 
     let addon = ListControlAddon.Create();
-    addon.SetMargin(0, 110.0);
+    addon.SetMargin(1060.0, 20.0);
+    addon.SetWidth(315.0);
     addon.Reparent(panel, gameController);
 }
 

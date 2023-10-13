@@ -63,8 +63,45 @@ public class ListControlAddon extends inkCustomController {
         this.QueueEvent(evt);
     }
 
+    public func SetWidth(width: Float) {
+        this.m_searchInput.SetWidth(width);
+    }
+
     public func SetMargin(left: Float, opt top: Float, opt right: Float, opt bottom: Float) {
         this.m_root.SetMargin(new inkMargin(left, top, right, bottom));
+    }
+
+    public func SetAnchor(anchor: inkEAnchor) {
+        let point: Vector2;
+
+        switch anchor {
+            case inkEAnchor.TopRight:
+            case inkEAnchor.CenterRight:
+            case inkEAnchor.BottomRight:
+                point.X = 1.0;
+                break;
+            case inkEAnchor.TopCenter:
+            case inkEAnchor.Centered:
+            case inkEAnchor.BottomCenter:
+                point.X = 0.5;
+                break;
+        }
+
+        switch anchor {
+            case inkEAnchor.BottomLeft:
+            case inkEAnchor.BottomCenter:
+            case inkEAnchor.BottomRight:
+                point.Y = 1.0;
+                break;
+            case inkEAnchor.CenterLeft:
+            case inkEAnchor.Centered:
+            case inkEAnchor.CenterRight:
+                point.Y = 0.5;
+                break;
+        }
+
+        this.m_root.SetAnchor(anchor);
+        this.m_root.SetAnchorPoint(point);
     }
 
     public static func Create() -> ref<ListControlAddon> {

@@ -15,14 +15,19 @@ protected cb func OnInitialize() {
 }
 
 @wrapMethod(VirtualNestedListController)
-public func SetData(data: array<ref<VirutalNestedListData>>, opt keepToggledLevels: Bool, opt sortOnce: Bool) {
+public func SetData(const data: script_ref<array<ref<VirutalNestedListData>>>, opt keepToggledLevels: Bool, opt sortOnce: Bool) {
     wrappedMethod(data, keepToggledLevels, sortOnce);
 
     ArrayClear(this.m_dataLevels);
-    for entry in data {
-        if !ArrayContains(this.m_dataLevels, entry.m_level) {
-            ArrayPush(this.m_dataLevels, entry.m_level);
+
+    let i = 0;
+    let count = ArraySize(Deref(data));
+    while i < count {
+        let level = Deref(data)[i].m_level;
+        if !ArrayContains(this.m_dataLevels, level) {
+            ArrayPush(this.m_dataLevels, level);
         }
+        i += 1;
     }
 }
 
@@ -44,9 +49,9 @@ public func ToggleLevel(targetLevel: Int32) {
 public func ToggleAll(collapse: Bool) {
     if this.m_dataView.CanToggleLevels() {
         if NotEquals(collapse, this.m_defaultCollapsed) {
-            ArrayClear(this.m_toggledLevels);
-        } else {
             this.m_toggledLevels = this.m_dataLevels;
+        } else {
+            ArrayClear(this.m_toggledLevels);
         }
 
         this.m_dataView.SetToggledLevels(this.m_toggledLevels, this.m_defaultCollapsed);
