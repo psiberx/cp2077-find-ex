@@ -1,10 +1,19 @@
-@addMethod(QuestListVirtualNestedDataView)
-protected func FilterText(itemData: ref<VirutalNestedListData>) -> Bool {
-    if itemData.m_isHeader {
+@wrapMethod(QuestListVirtualDataView)
+public func FilterItem(data: ref<IScriptable>) -> Bool {
+    if !wrappedMethod(data) {
         return false;
     }
 
-    let questData = itemData.m_data as QuestListItemData;
+    if UTF8StrLen(this.m_searchTerm) == 0 {
+        return true;
+    }
+
+    let questData = data as QuestListItemData;
+
+    if !IsDefined(questData) {
+        return true;
+    }
+
     let questEntry = questData.m_questData;
 
     let title = GetLocalizedText(questEntry.GetTitle(questData.m_journalManager));
